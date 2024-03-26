@@ -28,4 +28,20 @@ try {
 }
 })
 
-export {createUser}
+const loginUser = asyncHandler(async(req,res)=>{
+    const {email,password} = req.body
+    const user = await User.findOne({email})
+    if(user && (await bcrypt.compare(password,user.password))){
+        generateToken(res,user._id)
+        res.status(200).json({
+            _id:user._id,
+            username:user.username,
+            email:user.email,
+            isAdmin:user.isAdmin
+        })
+    }else{
+        res.status(401)
+        throw new Error("Invalid email or password")
+    }
+})
+export {createUser,loginUser}
