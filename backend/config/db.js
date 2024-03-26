@@ -6,6 +6,8 @@ const connectDB = async()=>{
         console.log('connected')
     } catch (error) {
         console.error(`Error: ${error}`)
+        
+        setInterval(()=>connectDB(), 5000)
         process.exit(1)
     }
 }
