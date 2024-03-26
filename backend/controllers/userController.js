@@ -44,4 +44,8 @@ const loginUser = asyncHandler(async(req,res)=>{
         throw new Error("Invalid email or password")
     }
 })
+const logoutCurrentUser= asyncHandler(async(req,res)=>{
+    res.cookie("jwt","",{httpOnly:true,maxAge:new Date(0)})
+    res.status(200).json({message:"User logged out"})
+})
 export {createUser,loginUser}
