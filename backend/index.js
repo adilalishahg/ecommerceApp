@@ -1,7 +1,7 @@
 import path from 'path'
 import express from 'express'
 import dotenv from 'dotenv'
-import cookieParser from 'cookie-parser'
+import cookieParser from 'cookie-parser' 
 import useRoutes from './routes/useRoutes.js'
 
 //utiles
@@ -22,7 +22,7 @@ app.use(express.urlencoded({extended:true}))
 
 app.use(cookieParser())
 
-app.get("/api/users",useRoutes)
+app.use("/api/users",useRoutes) 
 
 
 
