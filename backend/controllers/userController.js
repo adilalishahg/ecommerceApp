@@ -4,30 +4,34 @@ import bcrypt from "bcryptjs";
 import generateToken from "../utils/createToken.js";
  
 const createUser = asyncHandler(async (req, res) => {
-    const {username,email,password} = req.body
+     
+    const {username,email,password,isAdmin} = req.body
    
     if(!username||!email||!password){
         throw new Error("Please fill all the fields")
     } 
     const userExist = await User.findOne({email})
-    
-    if(userExist) res.status(400).send("User already exists") 
-const hashedPassword = await encryptPasword(password)
-    const newUser = new User({username,email,password:hashedPassword})
-try {
-    await newUser.save()
      
-    generateToken(res,newUser._id)
-    res.status(201).json({
-        _id:newUser._id,
-        username:newUser.username,
-        email:newUser.email,
-        isAdmin:newUser.usAdmin
-    })
-} catch (error) {
-    res.status(400)
-    throw new Error("Invalid user data")
-}
+    if(userExist){
+         res.status(400).json({message:"User already exist"})
+         return
+    }
+    const hashedPassword = await encryptPasword(password)
+    const newUser = new User({username,email,password:hashedPassword,isAdmin})
+    try {
+        await newUser.save()
+        
+        generateToken(res,newUser._id)
+        res.status(201).json({
+            _id:newUser._id,
+            username:newUser.username,
+            email:newUser.email,
+            isAdmin:newUser.isAdmin
+        })
+    } catch (error) {
+        res.status(400)
+        throw new Error("Invalid user data")
+    }
 })
 
 const loginUser = asyncHandler(async(req,res)=>{

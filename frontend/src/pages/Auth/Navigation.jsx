@@ -48,23 +48,23 @@ const closeSidebar=()=>{
           className="flex items-center transition-transform transform hover:translate-x-2"
         > 
           <AiOutlineHome className="mr-2 mt-[3rem]" size={26} />
-          <span className="hidden nav-item-name mt-[3rem]">HOME</span>{" "}
+          <span className="hidden nav-item-name mt-[3rem] text-white">HOME</span>{" "}
         </Link>
         <Link
           to="/shop"
           className="flex items-center transition-transform transform hover:translate-x-2"
         >
           <AiOutlineShopping className="mr-2 mt-[3rem]" size={26} />
-          <span className="hidden nav-item-name mt-[3rem]">SHOP</span>{" "}
+          <span className="hidden nav-item-name mt-[3rem] text-white">SHOP</span>{" "}
         </Link>
 
         <Link to="/cart" className="flex items-center transition-transform transform hover:translate-x-2">
           <AiOutlineShoppingCart size={26} className="mr-2 mt-[3rem]"/>
-          <span className="nav-item-name mt-[3rem] hidden ">Cart</span>{" "}
+          <span className="nav-item-name mt-[3rem] hidden text-white">Cart</span>{" "}
         </Link>
         <Link to="/favorite" className="flex items-center transition-transform transform hover:translate-x-2">
           <FaHeart size={26} className="mr-2 mt-[3rem]"/>
-          <span className="nav-item-name mt-[3rem] hidden ">Favorite</span>{" "}
+          <span className="nav-item-name mt-[3rem] hidden text-white">Favorite</span>{" "}
         </Link>
             <div className="relative">
 
@@ -114,7 +114,7 @@ const closeSidebar=()=>{
                   )}
                     
                 <li>
-                    <Link to='/admin/profile' className="block px-4 py-2 hover:bg-gray-100 ">Profile</Link>
+                    <Link to='/profile' className="block px-4 py-2 hover:bg-gray-100 ">Profile</Link>
                 </li>
                 <li>
                     <Link   onClick={logoutHandler} className="block px-4 py-2 hover:bg-gray-100">Logout</Link>
