@@ -116,12 +116,13 @@ const getUserById = asyncHandler(async(req,res)=>{
     }
 })
 const UpdateUserById = asyncHandler(async(req,res)=>{
+     
     const user = await User.findById(req.params.id)
     if(user){
         user.username = req.body.username||user.username
         user.email = req.body.email||user.email
-        user.isAdmin = req.body.isAdmin
-        const updatedUser = await user.save()
+        user.isAdmin = req.body.isAdmin||false
+        const updatedUser = await user.save() 
         res.json({
             _id:updatedUser._id,
             username:updatedUser.username,

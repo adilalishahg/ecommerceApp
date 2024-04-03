@@ -9,7 +9,7 @@ router.post("/logout",logoutCurrentUser)
 router.route("/profile").get(authenticate,getCurrentUserProfile).put(authenticate,updateCurrentUserProfile)
 
 // ADMIN ROUTES
-router.route("/admin/:id").delete(authenticate,authorizeAdmin,deleteUser)
+router.route("/:id").delete(authenticate,authorizeAdmin,deleteUser)
       .get(authenticate,authorizeAdmin,getUserById)
       .put(authenticate,authorizeAdmin,UpdateUserById)
 

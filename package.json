@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "type": "module",
-  "scripts": { 
-    "backend":"nodemon backend/index.js",
-    "frontend":"npm run dev --prefix frontend",
-    "dev":"concurrently \"npm run backend\" \"npm run frontend\" "
+  "scripts": {
+    "backend": "nodemon backend/index.js",
+    "frontend": "npm run dev --prefix frontend",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\" "
   },
   "keywords": [],
   "author": "",
@@ -26,6 +26,7 @@
     "express-async-handler": "^1.2.0",
     "express-formidable": "^1.2.0",
     "flowbite": "^2.3.0",
+    "flowbite-react": "^0.7.8",
     "jsonwebtoken": "^9.0.2",
     "moment": "^2.30.1",
     "mongoose": "^8.2.2",
