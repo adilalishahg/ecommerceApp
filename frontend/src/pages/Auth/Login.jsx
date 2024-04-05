@@ -18,7 +18,7 @@ const Login = () => {
 
     const {search} = useLocation()
     const sp = new URLSearchParams(search)
-    const redirect = sp.get('redirect')||''
+    const redirect = sp.get('redirect')||'/'
     console.log(redirect)
     useEffect(()=>{
         if(userInfo){
@@ -37,7 +37,7 @@ const Login = () => {
     }
   return (
     <div>
-        <section className="flex   pl-[10rem]">
+        <section className="flex pl-[10rem]">
             <div className="mr-[4rem] mt-[5rem]" >
                 <h1 className="mb-4 text-2xl font-semibold">Sign In</h1>
                 <form onSubmit={submitHandler} className="container w-[40rem]">
