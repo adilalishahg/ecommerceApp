@@ -60,8 +60,7 @@ const CategoryList = () => {
       if (result.error) {
         toast.error(result.error);
       } else {
-        toast.success(`${result.name} is updated`);
-        useFetchCategoriesQuery().refetch();
+        toast.success(`${result.name} is updated`); 
         setSelectedCategory(null);
         setUpdatingName("");
         setModalVisible(false);
