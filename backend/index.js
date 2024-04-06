@@ -5,6 +5,7 @@ import bodyParser  from 'body-parser'
 import cookieParser from 'cookie-parser' 
 import useRoutes from './routes/useRoutes.js'
 import categoryRoutes from './routes/categoryRoutes.js'
+import productRoutes from './routes/productRoutes.js'
 
 //utiles
 
@@ -28,6 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 app.use("/api/users",useRoutes) 
 app.use("/api/category",categoryRoutes) 
+app.use("/api/product",productRoutes) 
 
 
 
