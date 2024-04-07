@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser'
 import useRoutes from './routes/useRoutes.js'
 import categoryRoutes from './routes/categoryRoutes.js'
 import productRoutes from './routes/productRoutes.js'
+import uploadRoutes from './routes/uploadRoutes.js'
 
 //utiles
 
@@ -30,7 +31,10 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.use("/api/users",useRoutes) 
 app.use("/api/category",categoryRoutes) 
 app.use("/api/product",productRoutes) 
+app.use("/api/upload",uploadRoutes) 
 
+const __dirname = path.resolve()
 
+app.use('/uploads', express.static(path.join(__dirname, '/uploads'))) 
 
 app.listen(port,()=>console.log(`server running on port ${port}`))
