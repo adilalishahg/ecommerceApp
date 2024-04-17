@@ -34,6 +34,7 @@ const addProduct = asyncHandler(async (req,res)=>{
 const updateProductDetails = asyncHandler(async (req,res)=>{
     try {
         const {name,description,price,category,quantity,brand} = req.fields
+         
         switch (true) {
             case !name:
                     return res.status(400).json("Name is required") 
