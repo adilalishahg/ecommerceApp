@@ -130,6 +130,7 @@ const addProductReview = asyncHandler(async (req,res)=>{
     }
 })
 const fetchTopProducts = asyncHandler(async (req,res)=>{
+     
     try {
         const products = await Product.find({}).sort({rating:-1}).limit(4)
         res.json(products)
@@ -137,6 +138,11 @@ const fetchTopProducts = asyncHandler(async (req,res)=>{
         console.log(error)
         res.status(400).json({error:"Server Error"})
     }
+})
+const fetchTopProducts2 = asyncHandler(async (req,res)=>{
+    console.log('test')
+    return res.json('test')
+    
 })
 const fetchNewProducts = asyncHandler(async (req,res)=>{
     try {

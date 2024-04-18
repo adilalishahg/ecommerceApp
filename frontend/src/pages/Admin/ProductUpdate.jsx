@@ -48,6 +48,7 @@ const AdminProductUpdate = () => {
       setDescription(productData.description);
       setPrice(productData.price);
       setCategory(productData?.category);
+      setStock(productData?.countInStock);
       setQuantity(productData.quantity);
       setBrand(productData.brand);
       setImage(productData.image);
@@ -59,14 +60,14 @@ const AdminProductUpdate = () => {
     formData.append("image", e.target.files[0]);
     try {
       const res = await uploadProductImage(formData).unwrap();
-      toast.success("Item added successfully", {
-        position: toast.POSITION.TOP_RIGHT,
+      toast.success("Item updated successfully", {
+        // position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
       });
       setImage(res.image);
     } catch (err) {
-      toast.success("Item added successfully", {
-        position: toast.POSITION.TOP_RIGHT,
+      toast.success("Item updated successfully", {
+        // position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
       });
     }
@@ -90,12 +91,12 @@ const AdminProductUpdate = () => {
 
       if (data?.error) {
         toast.error(data.error, {
-          position: toast.POSITION.TOP_RIGHT,
+          // position: toast.POSITION.TOP_RIGHT,
           autoClose: 2000,
         });
       } else {
         toast.success(`Product successfully updated`, {
-          position: toast.POSITION.TOP_RIGHT,
+          // position: toast.POSITION.TOP_RIGHT,
           autoClose: 2000,
         });
         navigate("/admin/allproductslist");
@@ -103,7 +104,7 @@ const AdminProductUpdate = () => {
     } catch (err) {
       console.log(err);
       toast.error("Product update failed. Try again.", {
-        position: toast.POSITION.TOP_RIGHT,
+        // position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
       });
     }
@@ -136,7 +137,7 @@ const AdminProductUpdate = () => {
       <div className="container  xl:mx-[9rem] sm:mx-[0]">
         <div className="flex flex-col md:flex-row">
           <AdminMenu />
-          <div className="md:w-3/4 p-3">
+          <div className="p-3 md:w-3/4">
             <div className="h-12">Update / Delete Product</div>
 
             {image && (
@@ -150,7 +151,7 @@ const AdminProductUpdate = () => {
             )}
 
             <div className="mb-3">
-              <label className="text-white  py-2 px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
+              <label className="block w-full px-4 py-2 font-bold text-center text-white rounded-lg cursor-pointer py-11">
                 {image ? image.name : "Upload image"}
                 <input
                   type="file"
@@ -247,13 +248,13 @@ const AdminProductUpdate = () => {
               <div className="">
                 <button
                   onClick={handleSubmit}
-                  className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-green-600 mr-6"
+                  className="px-10 py-4 mt-5 mr-6 text-lg font-bold bg-green-600 rounded-lg"
                 >
                   Update
                 </button>
                 <button
                   onClick={handleDelete}
-                  className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-pink-600"
+                  className="px-10 py-4 mt-5 text-lg font-bold bg-pink-600 rounded-lg"
                 >
                   Delete
                 </button>

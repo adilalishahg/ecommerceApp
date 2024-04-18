@@ -8,7 +8,7 @@ const connectDB = async()=>{
         console.error(`Error: ${error}`)
         
         setInterval(()=>connectDB(), 5000)
-        process.exit(1)
+        // process.exit(1)
     }
 }
 

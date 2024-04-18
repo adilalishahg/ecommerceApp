@@ -5,6 +5,9 @@ import checkId from "../middlewares/checkId.js";
 import { addProduct, updateProductDetails ,fetchAllProducts,removeProduct,fetchNewProducts,fetchTopProducts,fetchProductById,fetchProducts, addProductReview } from "../controllers/productController.js";
 const router = express.Router();
 
+router.get('/top',fetchTopProducts)
+router.get('/new',fetchNewProducts)
+
  
 router.route('/').get(fetchProducts).post(authenticate,authorizeAdmin,formidable(),addProduct)
 router.route('/allproducts').get(fetchAllProducts)
@@ -15,6 +18,4 @@ router.route('/:id')
 
 router.route('/:id/reviews').post(authenticate,authorizeAdmin,checkId,addProductReview)
 
-router.get('/top',fetchTopProducts)
-router.get('/new',fetchNewProducts)
 export default router
