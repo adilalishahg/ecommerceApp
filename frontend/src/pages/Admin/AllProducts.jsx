@@ -5,7 +5,7 @@ import AdminMenu from "./AdminMenu";
 
 const AllProducts = () => {
   const { data: products, isLoading, isError } = useAllProductsQuery();
-
+console.log(products)
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -17,12 +17,12 @@ const AllProducts = () => {
   return (
     <>
       <div className="container mx-[9rem]">
-        <div className="flex flex-col  md:flex-row">
+        <div className="flex flex-col md:flex-row">
           <div className="p-3">
             <div className="ml-[2rem] text-xl font-bold h-12">
               All Products ({products.length})
             </div>
-            <div className="flex flex-wrap justify-around items-center">
+            <div className="flex flex-wrap items-center justify-around">
               {products.map((product) => (
                 <Link
                   key={product._id}
@@ -35,13 +35,13 @@ const AllProducts = () => {
                       alt={product.name}
                       className="w-[10rem] object-cover"
                     />
-                    <div className="p-4 flex flex-col justify-around">
+                    <div className="flex flex-col justify-around p-4">
                       <div className="flex justify-between">
-                        <h5 className="text-xl font-semibold mb-2">
+                        <h5 className="mb-2 text-xl font-semibold">
                           {product?.name}
                         </h5>
 
-                        <p className="text-gray-400 text-xs">
+                        <p className="text-xs text-gray-400">
                           {moment(product.createdAt).format("MMMM Do YYYY")}
                         </p>
                       </div>
@@ -80,7 +80,7 @@ const AllProducts = () => {
               ))}
             </div>
           </div>
-          <div className="md:w-1/4 p-3 mt-2">
+          <div className="p-3 mt-2 md:w-1/4">
             <AdminMenu />
           </div>
         </div>
