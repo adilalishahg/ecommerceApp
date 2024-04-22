@@ -31,7 +31,7 @@ const UserList = () => {
         toast.error(err?.data?.message || err.error);
       }
     }
-  };
+  }; 
   const toggleEdit = (id, username, email) => {
     setEditableUserId(id);
     setEditableUserName(username);
@@ -53,17 +53,17 @@ const UserList = () => {
 
   return (
     <div className="p-4">
-        <h1 className="text-2xl font-semibold mb-4">Users</h1>
+        <h1 className="mb-4 text-2xl font-semibold">Users</h1>
         {isLoading?(<Loader/>):(error?(<Message variant='danger'>{error?.data.message||error.message}</Message>):(
-            <div className=" flex flex-col md:flex-row">
+            <div className="flex flex-col md:flex-row">
                 {/* Admin Menu */}
-                <table className="w-full md:w-4/5 mx-auto">
+                <table className="w-full mx-auto md:w-4/5">
                     <thead>
                         <tr>
-                            <th className="px-4 py2 text-left">ID</th>
-                            <th className="px-4 py2 text-left">NAME</th>
-                            <th className="px-4 py2 text-left">EMAIL</th>
-                            <th className="px-4 py2 text-left">ADMIN</th> 
+                            <th className="px-4 text-left py2">ID</th>
+                            <th className="px-4 text-left py2">NAME</th>
+                            <th className="px-4 text-left py2">EMAIL</th>
+                            <th className="px-4 text-left py2">ADMIN</th> 
                         </tr>
                     </thead>
                     <tbody>
@@ -81,7 +81,7 @@ const UserList = () => {
                         />
                         <button
                           onClick={() => updateHandler(user._id)}
-                          className="ml-2 bg-blue-500 text-white py-2 px-4 rounded-lg"
+                          className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg"
                         >
                           <FaCheck />
                         </button>
@@ -110,7 +110,7 @@ const UserList = () => {
                         />
                         <button
                           onClick={() => updateHandler(user._id)}
-                          className="ml-2 bg-blue-500 text-white py-2 px-4 rounded-lg"
+                          className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg"
                         >
                           <FaCheck />
                         </button>
@@ -140,7 +140,7 @@ const UserList = () => {
                       <div className="flex">
                         <button
                           onClick={() => deleteHandler(user._id)}
-                          className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                          className="px-4 py-2 font-bold text-white bg-red-600 rounded hover:bg-red-700"
                         >
                           <FaTrash />
                         </button>
