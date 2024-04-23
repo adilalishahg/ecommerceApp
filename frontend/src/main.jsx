@@ -15,6 +15,7 @@ import CategoryList from './pages/Admin/CategoryList.jsx'
 import ProductList from './pages/Admin/ProductList.jsx'
 import AdminProductUpdate from './pages/Admin/ProductUpdate.jsx'
 import AllProducts from './pages/Admin/AllProducts.jsx'
+import ProductDetails from "./pages/Products/ProductDetails.jsx";
 import Home from './Home.jsx'
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,7 +26,8 @@ const router = createBrowserRouter(
 
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
-      <Route path='/' index= {true} element={<Home />} />
+      <Route path='/' index= {true} element={<Home />} /> 
+      <Route path="/product/:id" element={<ProductDetails />} />
 
       {/* ADMIN ROUTES */}
       <Route path="/admin" element={<AdminRoute/>} >

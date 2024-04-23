@@ -6,12 +6,16 @@ import {
   removeFromFavorites,
   setFavorites,
 } from "../../redux/features/favorites/favoriteSlice";
-import { addFavoriteToLocalStorage, getFavoritesFromLocalStorage, removeFavoriteFromLocalStorage } from "../../Utils/localStorage";
- 
+
+import {
+  addFavoriteToLocalStorage,
+  getFavoritesFromLocalStorage,
+  removeFavoriteFromLocalStorage,
+} from "../../Utils/localStorage";
+
 const HeartIcon = ({ product }) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites) || [];
-  console.log(favorites);
   const isFavorite = favorites.some((p) => p._id === product._id);
 
   useEffect(() => {
