@@ -15,6 +15,6 @@ router.route('/:id')
 .put(authenticate,authorizeAdmin,formidable(),updateProductDetails)
 .delete(authenticate,authorizeAdmin,formidable(),removeProduct)
 
-router.route('/:id/reviews').post(authenticate,authorizeAdmin,checkId,addProductReview)
+router.route('/:id/reviews').post(authenticate,checkId,addProductReview)
 
 export default router

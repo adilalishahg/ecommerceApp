@@ -19,6 +19,7 @@ import {
   import moment from "moment";
   import HeartIcon from "./HeartIcon";
 import Ratings from "./Ratings";
+import ProductTabs from "./ProductTabs";
 
 const ProductDetails = () => {
     const {id:productId} = useParams()
@@ -29,7 +30,23 @@ const ProductDetails = () => {
     const [comment,setComment] = useState('')
     const {data:product,isLoading,refetch,error} = useGetProductDetailsQuery(productId)
     const {userInfo } = useSelector(state=>state.auth)
+    // console.log(userInfo)
     const [createReview,{isLoading:loadingProductReview}] = useCreateReviewMutation()
+
+    const submitHandler =async (e)=>{
+        e.preventDefault()
+        try {
+           const resp =  await createReview({
+                productId,rating,comment
+            }).unwrap()
+            
+            refetch()
+            toast.success('Review created successfully')
+        } catch (error) { 
+            toast.error(error?.data?.message||error.message||error.data?.error)
+        }
+
+    }
     return (
     <>
         <div>
@@ -44,7 +61,7 @@ const ProductDetails = () => {
                                 md:w-[30rem] sm:w-[20rem] mr-2rem'/>
                                 <HeartIcon product={product}/>
                         </div>
-                        <div className="flex flex-col justify-between">
+                        <div className="flex flex-col justify-between ml-4">
                             <h2 className="text-2xl font-semibold">{product.name}</h2>
                             <p className="my-4 xl:w-[35rem] lg:w-[35rem] md:w-[30rem] text-[#B0B0B0]">{product.description}</p>
                             <p className="my-4 text-5xl font-extrabold">$ {product.price}</p>
@@ -83,13 +100,52 @@ const ProductDetails = () => {
                             <div className="flex flex-wrap justify-between">
                                 {/* Rating */}
                                 <Ratings value={product.rating} text={`${product.numReviews} reviews`}/>
+                                {product.countInStock > 0 && (
+                                    <div>
+                                        <select value={qty}
+                                            onChange={(e)=>setQty(e.target.value)}
+                                            className="p-2 w-[6rem] rounded-lg text-black"
+                                        >
+                                            {[...Array(product.countInStock).keys()].map((x) => (
+                                                <option key={x + 1} value={x + 1}> 
+                                                    {x + 1}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                )}
                             </div>
+                            <div className="btn-container">
+                                <button 
+                                    // onClick = {addToCartHandler} 
+                                    disabled={product.counInStock ===0}
+                                    className="px-4 py-2 mt-4 text-white bg-pink-600 rounded-lg md:mt-0"
+                                >
+                                    Add To Cart
+                                </button>
+                            </div>
+                        </div>
+                        <div className="mt-[5rem] container flex flex-wrap justify-between items-start ml-[10rem]">
+                            {/* Product Tabs */}
+                            <ProductTabs 
+                                loadingProductReview={loadingProductReview}
+                                useInfo = {userInfo}
+                                submitHandler = {submitHandler}
+                                rating={rating}
+                                setRating={setRating}
+                                comment={comment}
+                                setComment={setComment}
+                                product={product}
+                            />
                         </div>
                     </div>
                 </>
             )}
     </>
   )
+}
+Ratings.defaultProps = {
+    color:'yellow-500'
 }
 
 export default ProductDetails

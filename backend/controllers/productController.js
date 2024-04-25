@@ -105,17 +105,18 @@ const fetchAllProducts = asyncHandler(async (req,res)=>{
     }  
 })
 const addProductReview = asyncHandler(async (req,res)=>{
-    const {rating,comment} = req.body 
+    
     const product = await Product.findById(req.params.id)
+    const comment = req.body.comment 
     if(product){
         const alreadyReviewed = product.reviews.find(r=>r.user.toString() === req.user._id.toString())
         if(alreadyReviewed){
-            res.status(400).json({error:"Product already reviewed"})
+            res.status(401).json({error:"Product already reviewed"})
             return
         }
         const review = {
-            name:req.user.name,
-            rating:Number(rating),
+            name:req.user.username,
+            rating:Number(req.body.rating),
             comment,
             user:req.user._id
         }
